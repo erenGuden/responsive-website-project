@@ -4,7 +4,7 @@ import React from 'react'
 
 const Post = () => {
   return (
-    <Card sx={{margin: 5}}>
+    <Card sx={{margin: 5 }} >
     <CardHeader
       avatar={
         <Avatar sx={{ bgcolor: "red" }} aria-label="recipe">

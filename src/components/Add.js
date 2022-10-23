@@ -43,7 +43,7 @@ const Add = () => {
         sx={{
           position: "fixed",
           bottom: "2%",
-          left: { xs: "calc(50% - 150px)", md: 30 },
+          left: { xs: "calc(50%-100px)", md: 30 },
         }}
       >
         <Fab color="primary" aria-label="add">
