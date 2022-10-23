@@ -7,10 +7,12 @@ import {
   Box,
   Input,
   InputBase,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const StyledToolBar = styled(Toolbar)({
   display: "flex",
@@ -18,20 +20,32 @@ const StyledToolBar = styled(Toolbar)({
 });
 
 const StyledSearchBar = styled("div")(({ theme }) => ({
-  backgroundColor: "white",
+  backgroundColor: "background.default",
   padding: "0 10px",
-  borderRadius: "16px",
+  borderRadius: theme.shape.borderRadius,
   width: "40%",
 }));
 
 const Icons = styled(Box)(({ theme }) => ({
-  display: "flex",
-  padding: "0 10px",
-  gap: "9px",
+  display: "none",
   alignItems: "center",
+  gap: "20px",
+  [theme.breakpoints.up("sm")]: {
+    display: "flex",
+  },
+}));
+
+const UserBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  gap: "20px",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
 }));
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
   return (
     <AppBar position="sticky">
       <StyledToolBar>
@@ -49,9 +63,38 @@ const Navbar = () => {
           <Badge badgeContent={4} color="error" padding="10px">
             <Notifications color="action" />
           </Badge>
-          <Avatar sx={{ width: 30, height: 30 }} />
+          <Avatar
+            sx={{ width: 30, height: 30 }}
+            src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            onClick={(e) => setOpen(true)}
+          />
         </Icons>
+        <UserBox onClick={(e) => setOpen(true)}>
+          <Avatar
+            sx={{ width: 30, height: 30 }}
+            src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          />
+          <Typography variant="span">John</Typography>
+        </UserBox>
       </StyledToolBar>
+      <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
     </AppBar>
   );
 };
